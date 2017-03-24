@@ -13,7 +13,7 @@ docker key way:
     - require:
       - pkg: curl
 
-lxc-docker:
+docker-ce:
   pkg.installed:
     - refresh: true
     - require:

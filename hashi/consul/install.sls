@@ -47,14 +47,6 @@ consul user:
 
 {% endfor %}
 
-python-consul for salt-consul:
-  pip.installed:
-    - name: python-consul
-    {% if proxy == true %}
-    - proxy: {{ http_proxy }}
-    {% endif %}
-
-
 /etc/consul.d/ssl/ca.cert:
   file.managed:
     - contents_pillar: consul:cacert
@@ -67,9 +59,14 @@ python-consul for salt-consul:
     - user: consul
     - group: consul
 
-/etc/salt/minion.d/consul.conf:
+/etc/systemd/system/consul.service:
   file.managed:
-    - source: "salt://common/consul/files/consul.conf"
+    - source: "salt://hashi/consul/files/consul.service"
+    - template: jinja
+
+/etc/dnsmasq.d/10-consul:
+  file.managed:
+    - source: "salt://hashi/consul/files/10-consul"
     - template: jinja
 
 /etc/consul.d/ssl/consul.key:
@@ -78,6 +75,17 @@ python-consul for salt-consul:
     - user: consul
     - group: consul
 
+dnsmasq:
+  pkg.installed:
+    - refresh: false
+
+consul into dns:
+  file.prepend:
+    - name: /etc/resolv.conf
+    - text: 127.0.0.1
+    - require:
+      - pkg: dnsmasq
+      
 consul:
   service:
     - running

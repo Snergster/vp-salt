@@ -1,2 +1,2 @@
-deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial edge
+deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable edge
 

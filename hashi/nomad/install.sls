@@ -13,6 +13,11 @@
     - zip_file: /var/cache/salt/nomad.zip
     - dest: /usr/local/bin
 
+/etc/systemd/system/nomad.service:
+  file.managed:
+    - source: "salt://hashi/nomad/files/nomad.service"
+    - template: jinja
+
 
 /usr/local/bin/nomad:
   file.managed:
