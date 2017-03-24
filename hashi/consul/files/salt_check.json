@@ -1,0 +1,26 @@
+{
+  "checks": [
+   {
+    "id": "saltminion",
+    "name": "salt-minion",
+    "script": "/usr/local/bin/process_check salt-minion",
+    "interval": "90s"
+  },
+   {
+    "id": "saltmaster",
+    "name": "salt-master",
+    "script": "/usr/local/bin salt-master",
+    "interval": "90s"
+  },
+   {
+    "id": "ssh",
+    "name": "ssh",
+    "script": "/usr/local/bin sshd",
+    "interval": "90s"
+  }
+ ]
+}
+
+
+
+

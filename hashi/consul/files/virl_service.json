@@ -1,0 +1,11 @@
+{
+  "services": [{
+    "name": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "tags": ["virl"]
+  },
+  {
+    "name": "salt-minion",
+    "tags": ["salt"]
+  }
+  ]
+}

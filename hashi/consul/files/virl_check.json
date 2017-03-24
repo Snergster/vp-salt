@@ -1,0 +1,96 @@
+{
+  "checks": [
+   {
+    "id": "VIRL_main",
+    "name": "VIRL web on port 80",
+    "http": "http://localhost:80/",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "interval": "90s",
+    "timeout": "10s"
+  },
+   {
+    "id": "STD",
+    "name": "STD on port 19399",
+    "http": "http://localhost:19399/",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "interval": "90s",
+    "timeout": "10s"
+  },
+  {
+    "id": "UWM",
+    "name": "UWM on port 19400",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "http": "http://localhost:19400/rest/",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "virl_vis_webserver",
+    "name": "virl-vis-webserver on port 19402",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "http": "http://localhost:19402/test",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "keystone_service",
+    "name": "keystone service",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "script": "/usr/local/bin/process_check keystone-all",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "Neutron_port",
+    "name": "Neutron API on port 9696",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "http": "http://localhost:9696/",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "Nova_port",
+    "name": "Nova API on port 8774",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "http": "http://localhost:8774/",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "ank_cisco_webserver",
+    "name": "ank-cisco-webserver on port 19401",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "http": "http://localhost:19401/test",
+    "interval": "90s",
+    "timeout": "20s"
+  },
+  {
+    "id": "virl-webmuxd",
+    "name": "service virl_webmuxd running",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "script": "/usr/local/bin/process_check 'python /usr/local/bin/virl_webmuxd'",
+    "interval": "90s"
+  },
+  {
+    "id": "virl-vis-webserver",
+    "name": "service virl-vis-webserver running",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "script": "/usr/local/bin/process_check virl_live_vis_processor",
+    "interval": "90s"
+  },
+   {
+    "id": "salt_minion",
+    "name": "salt-minion service",
+    "service_id": "salt-minion",
+    "script": "/usr/local/bin/process_check salt-minion",
+    "interval": "90s"
+  },
+  {
+    "id": "virl-vis-mux",
+    "name": "service virl-vis-mux running",
+    "service_id": "virl-{{salt['grains.get']('host', 'generic') }}",
+    "script": "/usr/local/bin/process_check virl_live_vis_muxes",
+    "interval": "90s"
+  }
+ ]
+}
