@@ -1,7 +1,7 @@
-server=/ejkern.net/{{ salt['network.interface_ip']('bond0', '127.0.0.1' )) }}#8600
+server=/ejkern.net/{{ salt['network.interface_ip']('bond0') }}#8600
 #server=/ejkern.net/192.168.86.13#8600
 #server=/ejkern.net/192.168.86.8#8600
-server=/consul/{{  salt['network.interface_ip']('bond0', '127.0.0.1' )) }}#8600
+server=/consul/{{  salt['network.interface_ip']('bond0') }}#8600
 #server=/consul/192.168.86.12#8600
 #server=/consul/192.168.86.13#8600
 listen-address=127.0.0.1

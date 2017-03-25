@@ -35,4 +35,22 @@ curl:
   pkg.installed:
     - refresh: false
 
+/lib/systemd/system/docker.service:
+  file.managed:
+    - source: "salt://docker/files/docker.service"
+    - template: jinja
 
+docker:
+  service:
+    - running
+    - enable: True
+    - restart: True
+
+dnsmasq:
+  service:
+    - running
+    - order: last
+    - enable: True
+    - restart: True
+    - require:
+      - service: docker
