@@ -1,0 +1,23 @@
+{
+"bootstrap": false, 
+"server": false,
+"addresses": {
+  "http": "{{  salt['network.interface_ip']('bond0') }}",
+  "dns": "{{  salt['network.interface_ip']('bond0') }}"
+  },
+"ca_file": "/etc/consul.d/ssl/ca.cert",
+"cert_file": "/etc/consul.d/ssl/consul.cert",
+"key_file": "/etc/consul.d/ssl/consul.key",
+"verify_incoming": true,
+"verify_outgoing": true,
+"start_join": ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
+"advertise_addr": "{{  salt['network.interface_ip']('bond0') }}", 
+"disable_remote_exec": true, 
+"bind_addr": "{{  salt['network.interface_ip']('bond0') }}", 
+"datacenter": "{{salt['grains.get']('consul_datacenter', 'ewr')}}", 
+"node_name": "{{salt['grains.get']('host', 'slave')}}", 
+"data_dir": "/var/consul", 
+"log_level": "INFO", 
+"enable_syslog": true, 
+"encrypt": "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
+}
