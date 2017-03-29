@@ -1,6 +1,6 @@
 job "registry" {
-        region = "us"
-        datacenters = ["ewr"]
+        region = "{{salt['grains.get']('consul_region', 'us')}}"
+        datacenters = ["{{salt['grains.get']('consul_datacenter', 'ewr')}}"]
         type = "service"
         priority = 50
 

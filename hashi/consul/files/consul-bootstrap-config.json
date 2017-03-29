@@ -1,5 +1,5 @@
 {
-"bootstrap": false, 
+"bootstrap": true, 
 "server": true,
 "addresses": {
   "http": "{{  salt['network.interface_ip']('bond0') }}",
@@ -10,7 +10,6 @@
 "key_file": "/etc/consul.d/ssl/consul.key",
 "verify_incoming": true,
 "verify_outgoing": true,
-"bootstrap_expect": 2,
 "advertise_addr": "{{  salt['network.interface_ip']('bond0') }}", 
 "disable_remote_exec": true, 
 "bind_addr": "{{  salt['network.interface_ip']('bond0') }}", 

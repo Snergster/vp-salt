@@ -1,8 +1,8 @@
 
 {% set crypt = salt['pillar.get']('restrictedusers:consul:crypt', salt['grains.get']('consul_crypt', '$6rUu5wzdNP0Y')) %}
-{% set bootstrap = salt['grains.get']('consul_bootstrap', False )) %}
-{% set server = salt['grains.get']('consul_server', False )) %}
-{% set agent = salt['grains.get']('consul_agent', False )) %}
+{% set bootstrap = salt['grains.get']('consul_bootstrap', False ) %}
+{% set server = salt['grains.get']('consul_server', False ) %}
+{% set agent = salt['grains.get']('consul_agent', False ) %}
 
 /var/cache/salt/consul.zip:
   file.managed:
@@ -74,9 +74,9 @@ consul user:
     - require:
       - pkg: dnsmasq
 
-/etc/consul.d/consul.conf:
+/etc/consul.d/consul.json:
   file.managed:
-  {% if boostrap %}
+  {% if bootstrap %}
     - source: "salt://hashi/consul/files/consul-bootstrap-config.json"
   {% elif server %}
     - source: "salt://hashi/consul/files/consul-server-config.json"

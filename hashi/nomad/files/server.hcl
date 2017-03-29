@@ -12,7 +12,7 @@ advertise {
   }
 client {
   enabled       = true
-  servers = ["{{salt['grains.get']('consul_server', '147.75.105.153')}}:4647"]
+  servers = ["{{  salt['network.interface_ip']('bond0') }}:4647"]
   no_host_uuid = true
   options {
     "driver.raw_exec.enable" = "1"

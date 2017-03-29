@@ -1,6 +1,6 @@
 job "jenkins-master" {
-  region      = "us"
-  datacenters = ["bzn"]
+  region = "{{salt['grains.get']('consul_region', 'us')}}"
+  datacenters = ["{{salt['grains.get']('consul_datacenter', 'ewr')}}"]
   type        = "service"
   priority    = 50
 
@@ -24,7 +24,7 @@ job "jenkins-master" {
 
       config {
         image = "registry.service.consul:5000/jenkins/master"
-
+        volumes = [ "/var/jenkins:/var/jenkins_home"]
         port_map {
           http = 8080
           jnlp = 50000
@@ -45,8 +45,8 @@ job "jenkins-master" {
       }
 
       resources {
-        cpu    = 500
-        memory = 768
+        cpu    = 2000
+        memory = 2000
 
         network {
           mbits = 10
