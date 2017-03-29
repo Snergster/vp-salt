@@ -1,5 +1,7 @@
 
 {% set crypt = salt['pillar.get']('restrictedusers:consul:crypt', salt['grains.get']('consul_crypt', '$6rUu5wzdNP0Y')) %}
+{% set server = salt['grains.get']('nomad_server', False )) %}
+{% set agent = salt['grains.get']('nomad_agent', True )) %}
 
 /var/cache/salt/nomad.zip:
   file.managed:
@@ -32,9 +34,14 @@
 
 {% endfor %}
 
-#nomad:
-#  service:
-#    - running
-#    - order: last
-#    - enable: True
-#    - restart: True
+/etc/nomad.d/nomad.conf:
+  file.managed:
+  {% if server %}
+    - source: "salt://hashi/nomad/files/server.hcl"
+  {% elif agent %}
+    - source: "salt://hashi/nomad/files/agent.hcl"
+  {% endif %}
+    - template: jinja
+    - require:
+      - file: /usr/local/bin/nomad
+
