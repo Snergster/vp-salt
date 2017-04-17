@@ -1,5 +1,6 @@
 {
 "bootstrap": false, 
+"bootstrap_expect": 2,
 "server": true,
 "addresses": {
   "http": "{{  salt['network.interface_ip']('bond0') }}",
