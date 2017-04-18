@@ -19,6 +19,14 @@ client {
     "docker.privileged.enabled" = "true"
   }
 }
+tls {
+  http = true
+  rpc = true
+  ca_file       = "/etc/consul.d/ssl/ca.cert"
+  cert_file = "/etc/consul.d/ssl/consul.cert"
+  key_file = "/etc/consul.d/ssl/consul.key"
+}
+
 consul {
   address = "{{  salt['network.interface_ip']('bond0') }}:8500"
 }

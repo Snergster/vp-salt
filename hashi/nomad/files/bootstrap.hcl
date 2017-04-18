@@ -1,8 +1,7 @@
 server {
   enabled          = true
-  bootstrap_expect = 2
+  bootstrap_expect = 1
   encrypt = "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
-  retry_join = ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
 }
 data_dir    = "/var/nomad"
 datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr')}}"
