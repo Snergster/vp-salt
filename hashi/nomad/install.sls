@@ -54,3 +54,9 @@ liblxc1:
     - require:
       - file: /usr/local/bin/nomad
 
+nomad:
+  service:
+    - running
+    - order: last
+    - enable: True
+    - restart: True
