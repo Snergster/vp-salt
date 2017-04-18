@@ -1,5 +1,6 @@
 
 {% set crypt = salt['pillar.get']('restrictedusers:consul:crypt', salt['grains.get']('consul_crypt', '$6rUu5wzdNP0Y')) %}
+{% set bootstrap = salt['grains.get']('nomad_bootstrap', False ) %}
 {% set server = salt['grains.get']('nomad_server', False ) %}
 {% set agent = salt['grains.get']('nomad_agent', True ) %}
 
@@ -42,9 +43,11 @@ liblxc1:
 
 /etc/nomad.d/nomad.hcl:
   file.managed:
-  {% if server %}
+  {% if bootstrap %}
+    - source: "salt://hashi/nomad/files/bootstrap.hcl"
+  {% elif server %}
     - source: "salt://hashi/nomad/files/server.hcl"
-  {% elif agent %}
+  {% else %}
     - source: "salt://hashi/nomad/files/agent.hcl"
   {% endif %}
     - template: jinja

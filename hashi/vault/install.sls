@@ -27,9 +27,22 @@
 
 {% endfor %}
 
-#vault5068:
-#  service:
-#    - running
-#    - order: last
-#    - enable: True
-#    - restart: True
+/etc/vault.d/vault.hcl:
+  file.managed:
+    - source: "salt://hashi/vault/files/server.hcl"
+    - template: jinja
+    - require:
+      - file: /usr/local/bin/vault
+
+
+/etc/systemd/system/vault.service:
+  file.managed:
+    - source: "salt://hashi/vault/files/vault.service"
+
+
+vault:
+  service:
+    - running
+    - order: last
+    - enable: True
+    - restart: True

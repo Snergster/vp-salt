@@ -14,5 +14,6 @@
 "data_dir": "/var/consul", 
 "log_level": "INFO", 
 "enable_syslog": true, 
+"ui": true, 
 "encrypt": "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
 }
