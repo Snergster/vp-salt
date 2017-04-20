@@ -7,19 +7,15 @@ server {
 data_dir    = "/var/nomad"
 datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr')}}"
 region = "{{salt['grains.get']('consul_region', 'us')}}"
-advertise {
-  http = "{{  salt['network.interface_ip']('bond0') }}:4646"
-  rpc = "{{  salt['network.interface_ip']('bond0') }}"
-  serf = "{{  salt['network.interface_ip']('bond0') }}"
-  }
+bind_address = "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}"
 tls {
-  http = true
-  rpc = true
+  http = false
+  rpc = false
   ca_file       = "/etc/consul.d/ssl/ca.cert"
   cert_file = "/etc/consul.d/ssl/consul.cert"
   key_file = "/etc/consul.d/ssl/consul.key"
 }
 
 consul {
-  address = "{{  salt['network.interface_ip']('bond0') }}:8500"
+  address = "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}:8500"
 }
