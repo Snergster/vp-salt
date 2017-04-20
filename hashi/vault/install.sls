@@ -27,7 +27,7 @@
 
 {% endfor %}
 
-/etc/vault.d/vault.hcl:
+/etc/vault.d/server.hcl:
   file.managed:
     - source: "salt://hashi/vault/files/server.hcl"
     - template: jinja

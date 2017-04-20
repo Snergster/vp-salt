@@ -2,12 +2,11 @@ server {
   enabled          = true
   bootstrap_expect = 2
   encrypt = "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
-  retry_join = ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
 }
 data_dir    = "/var/nomad"
 datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr')}}"
 region = "{{salt['grains.get']('consul_region', 'us')}}"
-bind_address = "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}"
+bind_addr = "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}"
 tls {
   http = false
   rpc = false
