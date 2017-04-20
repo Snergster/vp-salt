@@ -74,6 +74,13 @@ consul user:
     - require:
       - pkg: dnsmasq
 
+/etc/dnsmasq.d/20-text:
+  file.managed:
+    - contents_pillar: consul:letstext
+    - require:
+      - pkg: dnsmasq
+
+
 /etc/consul.d/consul.json:
   file.managed:
   {% if bootstrap %}
