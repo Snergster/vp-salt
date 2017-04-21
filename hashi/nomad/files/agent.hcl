@@ -14,14 +14,16 @@ client {
     "docker.privileged.enabled" = "true"
   }
 }
+
 tls {
   http = true
   rpc = true
-  ca_file       = "/etc/consul.d/ssl/ca.cert"
-  cert_file = "/etc/consul.d/ssl/consul.cert"
-  key_file = "/etc/consul.d/ssl/consul.key"
+  ca_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/fullchain.pem"
+  cert_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/cert.pem"
+  key_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/privkey.pem"
+
 }
 
 consul {
-  address = "bind_address = "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}":8500"
+  address = "127.0.0.1:8500"
 }

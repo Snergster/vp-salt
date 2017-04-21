@@ -1,16 +1,27 @@
 {
 "bootstrap": true, 
 "server": true,
-"ca_file": "/etc/consul.d/ssl/ca.cert",
-"cert_file": "/etc/consul.d/ssl/consul.cert",
-"key_file": "/etc/consul.d/ssl/consul.key",
+"ca_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/fullchain.pem",
+"cert_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/cert.pem",
+"key_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/privkey.pem",
 "verify_incoming": true,
 "verify_outgoing": true,
 "disable_remote_exec": true, 
-"bind_addr": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}", 
+"bind_addr": "0.0.0.0",
+"advertise_addr": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}",
+"advertise_addrs": {
+  "serf_lan": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}:8301",
+  "serf_wan": "{{  salt['network.interface_ip']('bond0') }}:8302",
+  "rpc": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}:8300"
+  },
 "datacenter": "{{salt['grains.get']('consul_datacenter', 'ewr')}}", 
 "node_name": "{{salt['grains.get']('host', 'slave')}}", 
 "domain": "{{salt['grains.get']('consul_domain', 'consul')}}", 
+"ports": {
+  "https": 8501
+  },
+"protocol": 3,
+"raft_protocol": 3,
 "data_dir": "/var/consul", 
 "log_level": "INFO", 
 "enable_syslog": true, 
