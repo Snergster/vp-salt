@@ -129,3 +129,10 @@ consul:
     - order: last
     - enable: True
     - restart: True
+
+dnsmasq:
+  service:
+    - running
+    - order: last
+    - enable: True
+    - restart: True
