@@ -1,0 +1,3 @@
+glusterfs-server:
+  pkg.installed
+
