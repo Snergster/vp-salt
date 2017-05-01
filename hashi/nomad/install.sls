@@ -65,6 +65,11 @@ liblxc1:
     - require:
       - file: /usr/local/bin/nomad
 
+nomad hostname first:
+  file.prepend:
+    - name: /etc/hosts
+    - text: {{ salt['network.interface_ip']('bond0') }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
+
 nomad:
   service:
     - running
