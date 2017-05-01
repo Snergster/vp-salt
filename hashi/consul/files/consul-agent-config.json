@@ -1,19 +1,22 @@
 {
 "bootstrap": false, 
 "server": false,
-"addresses": {
-  "http": "{{  salt['network.interface_ip']('bond0') }}",
-  "dns": "{{  salt['network.interface_ip']('bond0') }}"
+"advertise_addr": {
+  "serf_lan": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}:8301",
+  "serf_wan": "{{  salt['network.interface_ip']('bond0') }}:8302",
+  "rpc": "{{  salt.network.ip_addrs(interface='bond0',type='private')[0] }}:8300"
   },
 "ca_file": "/etc/consul.d/ssl/ca.cert",
 "cert_file": "/etc/consul.d/ssl/consul.cert",
 "key_file": "/etc/consul.d/ssl/consul.key",
 "verify_incoming": true,
 "verify_outgoing": true,
-"start_join": ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
+"retry_join": ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
 "advertise_addr": "{{  salt['network.interface_ip']('bond0') }}", 
 "disable_remote_exec": true, 
-"bind_addr": "{{  salt['network.interface_ip']('bond0') }}", 
+"bind_addr": "0.0.0.0", 
+"protocol": 3,
+"raft_protocol": 3,
 "datacenter": "{{salt['grains.get']('consul_datacenter', 'ewr')}}", 
 "node_name": "{{salt['grains.get']('host', 'slave')}}", 
 "data_dir": "/var/consul", 

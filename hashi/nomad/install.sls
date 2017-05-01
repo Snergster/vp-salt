@@ -1,4 +1,3 @@
-
 {% set crypt = salt['pillar.get']('restrictedusers:consul:crypt', salt['grains.get']('consul_crypt', '$6rUu5wzdNP0Y')) %}
 {% set bootstrap = salt['grains.get']('nomad_bootstrap', False ) %}
 {% set server = salt['grains.get']('nomad_server', False ) %}
@@ -40,6 +39,18 @@ liblxc1:
     - makedirs: True
 
 {% endfor %}
+
+/etc/nomad.d/ssl/ca.cert:
+  file.managed:
+    - contents_pillar: nomad:cacert
+
+/etc/nomad.d/ssl/nomad.cert:
+  file.managed:
+    - contents_pillar: nomad:sslcert
+
+/etc/nomad.d/ssl/nomad.key:
+  file.managed:
+    - contents_pillar: nomad:sslkey
 
 /etc/nomad.d/nomad.hcl:
   file.managed:
