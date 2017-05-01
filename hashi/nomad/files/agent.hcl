@@ -15,8 +15,8 @@ client {
 }
 bind_addr = "0.0.0.0"
 tls {
-  http = true
-  rpc = true
+  http = false
+  rpc = false
   ca_file = "/etc/nomad.d/ssl/ca.cert"
   cert_file = "/etc/nomad.d/ssl/nomad.cert"
   key_file = "/etc/nomad.d/ssl/nomad.key"
