@@ -11,6 +11,7 @@ client {
     "driver.raw_exec.enable" = "0"
     "docker.cleanup.image" = "false"
     "docker.privileged.enabled" = "true"
+    "driver.whitelist" = "docker"
   }
 }
 bind_addr = "0.0.0.0"

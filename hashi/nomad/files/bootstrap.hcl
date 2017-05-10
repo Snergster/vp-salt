@@ -5,17 +5,20 @@ server {
 }
 data_dir    = "/var/nomad"
 datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr')}}"
-region = "{{salt['grains.get']('consul_region', 'us')}}"
+region = "{{salt['grains.get']('consul_region', 'global')}}"
 bind_addr = "0.0.0.0"
 tls {
   http = true
   rpc = true
-  ca_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/fullchain.pem"
-  cert_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/cert.pem"
-  key_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/privkey.pem"
+  ca_file = "/etc/nomad.d/ssl/ca.cert"
+  cert_file = "/etc/nomad.d/ssl/nomad.cert"
+  key_file = "/etc/nomad.d/ssl/nomad.key"
 
 }
 
 consul {
+  ca_file = "/etc/consul.d/ssl/ca.pem"
+  cert_file = "/etc/consul.d/ssl/consul.pem"
+  key_file = "/etc/consul.d/ssl/consul-key.pem"
   address = "127.0.0.1:8500"
 }

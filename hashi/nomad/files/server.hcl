@@ -1,11 +1,10 @@
 server {
   enabled          = true
-  bootstrap_expect = 2
   encrypt = "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
 }
 data_dir    = "/var/nomad"
-datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr')}}"
-region = "{{salt['grains.get']('consul_region', 'us')}}"
+datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr1')}}"
+region = "{{salt['grains.get']('consul_region', 'global')}}"
 bind_addr = "0.0.0.0"
 tls {
   http = true
@@ -18,5 +17,8 @@ tls {
 
 
 consul {
+  ca_file = "/etc/consul.d/ssl/ca.pem"
+  cert_file = "/etc/consul.d/ssl/consul.pem"
+  key_file = "/etc/consul.d/ssl/consul-key.pem"
   address = "127.0.0.1:8500"
 }
