@@ -1,0 +1,3 @@
+
+include:
+  - hashi.consul.first

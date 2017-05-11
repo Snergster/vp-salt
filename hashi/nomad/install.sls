@@ -70,6 +70,14 @@ nomad hostname first:
     - name: /etc/hosts
     - text: {{ salt['network.interface_ip']('bond0') }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
 
+nomad enabled:
+  service.enabled:
+    - name: nomad
+    - order: last
+    - enable: True
+    - restart: True
+
+
 nomad:
   service:
     - running

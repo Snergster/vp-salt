@@ -13,12 +13,25 @@ dnsmasq resolv version:
     - source: /etc/resolv.conf
 
 consul into dns:
-  file.prepend:
+  file.managed:
     - name: /etc/resolv.conf
-    - text: nameserver 127.0.0.1
+    - contents: nameserver 127.0.0.1
     - require:
       - pkg: dnsmasq
       - file: dnsmasq resolv version
+
+default nameserver dnsmasq:
+  network.managed:
+    - name: bond0
+    - dns: 
+      - 127.0.0.1
+    - require:
+      - pkg: dnsmasq
+      - file: dnsmasq resolv version
+
+dnsmasq enabled:
+  service.enabled:
+    - name: dnsmasq
 
 dnsmasq:
   service:
