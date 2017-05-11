@@ -18,7 +18,7 @@
     - source_hash: caf6018d7489d97d6cc2a1ac5f1cbd574c6db4cd61ed04b22b8db7b4bde64542
   module.run:
     - name: archive.unzip
-    - zip_file: /var/cache/salt/consul_template.zip
+    - zip_file: /var/cache/salt/consul-template.zip
     - dest: /usr/local/bin
 
 
