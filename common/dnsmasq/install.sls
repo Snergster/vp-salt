@@ -1,5 +1,6 @@
-dnsmasq:
+dnsmasq package install:
   pkg.installed:
+    - name: dnsmasq
     - refresh: false
 
 dnsmasq replace:
