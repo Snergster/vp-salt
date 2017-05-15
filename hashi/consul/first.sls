@@ -47,19 +47,6 @@ consul user:
     - user: consul
     - group: consul
 
-/etc/dnsmasq.d/10-consul:
-  file.managed:
-    - source: "salt://hashi/consul/files/10-consul"
-    - template: jinja
-    - require:
-      - pkg: dnsmasq
-
-/etc/dnsmasq.d/20-text:
-  file.managed:
-    - contents_pillar: consul:letstext
-    - require:
-      - pkg: dnsmasq
-
 
 /etc/consul.d/consul.json:
   file.managed:
