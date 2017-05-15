@@ -15,7 +15,7 @@ include:
       - pkg: dnsmasq
 
 
-dnsmasq enabled:
+dnsmasq service enabled:
   service.enabled:
     - name: dnsmasq
 
