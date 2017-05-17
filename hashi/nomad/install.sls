@@ -40,17 +40,6 @@ liblxc1:
 
 {% endfor %}
 
-/etc/nomad.d/ssl/ca.cert:
-  file.managed:
-    - contents_pillar: nomad:cacert
-
-/etc/nomad.d/ssl/nomad.cert:
-  file.managed:
-    - contents_pillar: nomad:sslcert
-
-/etc/nomad.d/ssl/nomad.key:
-  file.managed:
-    - contents_pillar: nomad:sslkey
 
 /etc/nomad.d/nomad.hcl:
   file.managed:
@@ -79,8 +68,11 @@ nomad enabled:
 
 
 nomad:
-  service:
-    - running
+  service.running:
     - order: last
     - enable: True
     - restart: True
+    - watch:
+      - file: /etc/nomad.d/nomad.hcl
+      - file: /etc/systemd/system/nomad.service
+      

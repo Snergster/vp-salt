@@ -1,6 +1,6 @@
 server {
   enabled          = true
-  encrypt = "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
+  encrypt = "{{salt['grains.get']('nomad_encrypt', 'foo')}}"
 }
 data_dir    = "/var/nomad"
 datacenter = "{{salt['grains.get']('consul_datacenter', 'ewr1')}}"
@@ -9,9 +9,9 @@ bind_addr = "0.0.0.0"
 tls {
   http = true
   rpc = true
-  ca_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/fullchain.pem"
-  cert_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/cert.pem"
-  key_file = "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/privkey.pem"
+  ca_file = "/etc/nomad.d/ssl/ca.pem"
+  cert_file = "/etc/nomad.d/ssl/nomad.pem"
+  key_file = "/etc/nomad.d/ssl/nomad-key.pem"
 
 }
 

@@ -2,9 +2,9 @@
 "bootstrap": false, 
 "server": true,
 "bind_addr": "0.0.0.0",
-"ca_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/fullchain.pem",
-"cert_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/cert.pem",
-"key_file": "/etc/letsencrypt/live/{{salt['grains.get']('consul_domain', 'consul')}}/privkey.pem",
+"ca_file": "/etc/consul.d/ssl/ca.pem",
+"cert_file": "/etc/consul.d/ssl/consul.pem",
+"key_file": "/etc/consul.d/ssl/consul-key.pem",
 "verify_incoming": true,
 "verify_outgoing": true,
 "retry_join": ["{{salt['grains.get']('consul_server_ip', '147.75.105.153')}}"],
@@ -26,5 +26,5 @@
 "data_dir": "/var/consul", 
 "log_level": "INFO", 
 "enable_syslog": true, 
-"encrypt": "{{salt['pillar.get']('consul:encrypt', 'foo')}}"
+"encrypt": "{{salt['grains.get']('consul_encrypt', 'foo')}}"
 }

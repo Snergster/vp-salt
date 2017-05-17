@@ -41,10 +41,10 @@ curl:
     - template: jinja
 
 docker:
-  service:
-    - running
+  service.running:
     - enable: True
-    - restart: True
+    - watch:
+      - file: /lib/systemd/system/docker.service
 
 dnsmasq:
   service:

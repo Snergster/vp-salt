@@ -35,19 +35,6 @@ consul user:
 
 {% endfor %}
 
-/etc/consul.d/ssl/ca.cert:
-  file.managed:
-    - contents_pillar: consul:cacert
-    - user: consul
-    - group: consul
-
-/etc/consul.d/ssl/consul.cert:
-  file.managed:
-    - contents_pillar: consul:sslcert
-    - user: consul
-    - group: consul
-
-
 /etc/consul.d/consul.json:
   file.managed:
   {% if bootstrap %}
@@ -56,17 +43,12 @@ consul user:
     - source: "salt://hashi/consul/files/consul-server-config.json"
   {% elif agent %}
     - source: "salt://hashi/consul/files/consul-agent-config.json"
+  {% else %}
+    - source: "salt://hashi/consul/files/consul-agent-config.json"
   {% endif %}
     - template: jinja
     - require:
       - file: /usr/local/bin/consul
-
-
-/etc/consul.d/ssl/consul.key:
-  file.managed:
-    - contents_pillar: consul:sslkey
-    - user: consul
-    - group: consul
 
 consul enabled:
   service.enabled:
