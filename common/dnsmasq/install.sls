@@ -22,10 +22,10 @@ consul into dns:
       - file: dnsmasq resolv version
 
 default nameserver dnsmasq:
-  network.managed:
-    - name: bond0
-    - dns: 
-      - 127.0.0.1
+  file.replace:
+    - name: /etc/network/interfaces
+    - pattern: dns-nameservers .*
+    - repl: dns-nameservers 127.0.0.1
     - require:
       - pkg: dnsmasq
       - file: dnsmasq resolv version
