@@ -8,12 +8,6 @@ include:
     - require:
       - pkg: dnsmasq
 
-/etc/dnsmasq.d/20-text:
-  file.managed:
-    - contents_pillar: consul:letstext
-    - require:
-      - pkg: dnsmasq
-
 
 dnsmasq service enabled:
   service.enabled:
@@ -24,3 +18,7 @@ dnsmasq running:
     - name: dnsmasq
     - enable: True
     - restart: True
+
+dnsmasq service restart:
+  cmd.run:
+    - name: service dnsmasq restart

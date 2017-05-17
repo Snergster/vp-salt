@@ -76,3 +76,12 @@ nomad:
       - file: /etc/nomad.d/nomad.hcl
       - file: /etc/systemd/system/nomad.service
       
+nomad service restart:
+  cmd.run:
+    - name: service nomad start
+
+nomad service enabled:
+  cmd.run:
+    - name: systemctl enable nomad
+    - require:
+      - file: /etc/systemd/system/nomad.service

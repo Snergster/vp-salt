@@ -63,3 +63,14 @@ consul running:
     - order: last
     - enable: True
     - restart: True
+
+consul service restart:
+  cmd.run:
+    - name: service consul start
+
+consul service enabled:
+  cmd.run:
+    - name: systemctl enable consul
+    - require:
+      - file: /etc/systemd/system/consul.service
+
