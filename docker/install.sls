@@ -46,11 +46,3 @@ docker:
     - watch:
       - file: /lib/systemd/system/docker.service
 
-dnsmasq:
-  service:
-    - running
-    - order: last
-    - enable: True
-    - restart: True
-    - require:
-      - service: docker
