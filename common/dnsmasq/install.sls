@@ -30,13 +30,14 @@ default nameserver dnsmasq:
       - pkg: dnsmasq
       - file: dnsmasq resolv version
 
-dnsmasq enabled:
-  service.enabled:
-    - name: dnsmasq
+dnsmasq reload:
+  module.run:
+    - name: service.systemctl_reload
 
 dnsmasq:
-  service:
-    - running
+  service.running:
     - order: last
     - enable: True
     - restart: True
+    - require:
+      - module: dnsmasq reload

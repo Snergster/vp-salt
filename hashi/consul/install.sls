@@ -34,12 +34,15 @@
     - source: "salt://hashi/consul/files/consul.service"
     - template: jinja
 
+consul reload:
+  module.run:
+    - name: service.systemctl_reload
 
 
 consul:
-  service:
-    - running
+  service.running:
     - order: last
     - enable: True
     - restart: True
-
+    - require:
+      - module: consul reload
