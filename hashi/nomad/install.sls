@@ -2,7 +2,7 @@
 {% set bootstrap = salt['grains.get']('nomad_bootstrap', False ) %}
 {% set server = salt['grains.get']('nomad_server', False ) %}
 {% set agent = salt['grains.get']('nomad_agent', True ) %}
-{% set public_port = salt['grains.get']('public_port', 'bond0' ) %}
+{% set public_ip = salt['network.interface_ip'](salt['grains.get']('public_port', 'bond0' )) %}
 
 liblxc1:
   pkg.installed:
@@ -58,7 +58,7 @@ liblxc1:
 nomad hostname first:
   file.prepend:
     - name: /etc/hosts
-    - text: {{ salt['network.interface_ip']('{{public_port}}') }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
+    - text: {{public_ip }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
 
 nomad reload:
   module.run:
