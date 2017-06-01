@@ -58,7 +58,7 @@ liblxc1:
 nomad hostname first:
   file.prepend:
     - name: /etc/hosts
-    - text: {{ salt['network.interface_ip']('{{public_port}}') }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
+    - text: {{ salt['network.interface_ip']({{public_port}}) }} {{ salt['grains.get']('id')}} {{ salt['grains.get']('id') }}
 
 nomad reload:
   module.run:
