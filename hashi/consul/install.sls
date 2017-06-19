@@ -2,8 +2,8 @@
 
 /var/cache/salt/consul.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/consul/0.8.3/consul_0.8.3_linux_amd64.zip
-    - source_hash: f894383eee730fcb2c5936748cc019d83b220321efd0e790dae9a3266f5d443a
+    - source: https://releases.hashicorp.com/consul/0.8.4/consul_0.8.4_linux_amd64.zip
+    - source_hash: https://releases.hashicorp.com/consul/0.8.4/consul_0.8.4_SHA256SUMS?_ga=2.57157225.2124633943.1497889162-1661805443.1495570571
   service.dead:
     - names:
       - consul
@@ -14,8 +14,8 @@
 
 /var/cache/salt/consul-template.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/consul-template/0.18.3/consul-template_0.18.3_linux_amd64.zip
-    - source_hash: caf6018d7489d97d6cc2a1ac5f1cbd574c6db4cd61ed04b22b8db7b4bde64542
+    - source: https://releases.hashicorp.com/consul-template/0.18.5/consul-template_0.18.5_linux_amd64.zip
+    - source_hash: b0cd6e821d6150c9a0166681072c12e906ed549ef4588f73ed58c9d834295cd2
   module.run:
     - name: archive.unzip
     - zip_file: /var/cache/salt/consul-template.zip
