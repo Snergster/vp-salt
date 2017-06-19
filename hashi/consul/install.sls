@@ -15,7 +15,7 @@
 /var/cache/salt/consul-template.zip:
   file.managed:
     - source: https://releases.hashicorp.com/consul-template/0.18.5/consul-template_0.18.5_linux_amd64.zip
-    - source_hash: b0cd6e821d6150c9a0166681072c12e906ed549ef4588f73ed58c9d834295cd2
+    - source_hash: https://releases.hashicorp.com/consul-template/0.18.5/consul-template_0.18.5_SHA256SUMS
   module.run:
     - name: archive.unzip
     - zip_file: /var/cache/salt/consul-template.zip
