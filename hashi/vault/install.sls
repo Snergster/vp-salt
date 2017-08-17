@@ -3,8 +3,8 @@
 
 /var/cache/salt/vault.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/vault/0.7.3/vault_0.7.3_linux_amd64.zip
-    - source_hash: https://releases.hashicorp.com/vault/0.7.3/vault_0.7.3_SHA256SUMS?_ga=2.159042424.338188822.1497890169-1097619037.1486504281
+    - source: https://releases.hashicorp.com/vault/0.8.1/vault_0.8.1_linux_amd64.zip
+    - source_hash: https://releases.hashicorp.com/vault/0.8.1/vault_0.8.1_SHA256SUMS?_ga=2.75385748.780647923.1502990835-1097619037.1486504281
   service.dead:
     - names:
       - vault
