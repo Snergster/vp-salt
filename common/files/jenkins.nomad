@@ -22,7 +22,7 @@ job "jenkins" {
       driver = "docker"
 
       config {
-        image = "registry.service.ejkern.net:5000/jenkins/master"
+        image = "registry.service.consul:5000/jenkins/master"
         volumes = [ "/var/jenkins:/var/jenkins_home"]
         port_map {
           http = 8080
