@@ -35,10 +35,9 @@ curl:
   pkg.installed:
     - refresh: false
 
-/lib/systemd/system/docker.service:
+/etc/docker/daemon.json:
   file.managed:
-    - source: "salt://docker/files/docker.service"
-    - template: jinja
+    - source: "salt://docker/files/daemon.json"
 
 docker:
   service.running:

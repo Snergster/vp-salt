@@ -1,0 +1,6 @@
+{
+	"dns": ["172.17.0.1"],
+	"host": ["unix:///var/run/docker.sock"],
+	"insecure-registries": ["registry.service.consul:5000", "registry.service.consul", "registry.fdiopoc.net"],
+	"storage-driver": "overlay2"
+}
