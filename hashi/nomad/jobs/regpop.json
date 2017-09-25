@@ -16,7 +16,7 @@
     "provisioners":[
         {
             "type": "shell",
-            "inline": ["git clone https://gerrit.fd.io/r/vpp /workspace/{{build_name}} && /workspace/{{build_name}}/build-root/vagrant/build.sh && rm -rf /workspace/{{build_name}}"]
+            "inline": ["mkdir -p /w/workspace && git clone https://gerrit.fd.io/r/vpp /w/workspace/{{build_name}} && /w/workspace/{{build_name}}/build-root/vagrant/build.sh && rm -rf /w/workspace/{{build_name}}"]
         }
     ],
     "post-processors": [
