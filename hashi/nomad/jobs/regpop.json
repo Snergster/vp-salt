@@ -1,0 +1,31 @@
+{
+    "builders":[
+    {
+    "name": "centos",
+        "type": "docker",
+        "image": "snergster/vpp-centos",
+        "export_path": "centos.tar"
+    },
+    {
+    "name": "ubuntu16",
+        "type": "docker",
+        "image": "snergster/vpp-ubuntu16",
+        "export_path": "ubuntu16.tar"
+    }
+],
+    "provisioners":[
+        {
+            "type": "shell",
+            "inline": ["git clone https://gerrit.fd.io/r/vpp /workspace/{{build_name}} && /workspace/{{build_name}}/build-root/vagrant/build.sh && rm -rf /workspace/{{build_name}}"]
+        }
+    ],
+    "post-processors": [
+    [
+        {
+            "type": "docker-import",
+            "repository": "registry.fdiopoc.net/vpp/{{build_name}}"
+        },
+    "docker-push"
+    ]
+    ]
+}
