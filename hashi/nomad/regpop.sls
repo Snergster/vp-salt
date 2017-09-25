@@ -10,5 +10,5 @@
 
 plan the regpop nomad job:
   cmd.run:
-    - name: nomad plan /root/regpop/regpop.nomad
+    - name: nomad run /root/regpop/regpop.nomad
 
