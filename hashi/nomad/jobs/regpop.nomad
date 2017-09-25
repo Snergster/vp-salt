@@ -1,10 +1,12 @@
+
 job "regpop" {
   datacenters = ["yul1"]
 
   type = "batch"
   periodic {
-    cron             = "15 0 * * 1,3,5 *"
+    cron             = "15 7 * * 1,3,5 *"
     prohibit_overlap = true
+    time_zone = "UTC"
   }
   constraint {
     attribute = "${node.class}"
@@ -13,9 +15,10 @@ job "regpop" {
 
   group "packbuild" {
     task "packer" {
-      driver = "exec"
+      driver = "raw_exec"
       config {
-        command = "/usr/local/bin/packer build /root/regpop/regpop.json"
+        command = "/usr/local/bin/packer"
+        args = ["build", "/root/regpop/regpop.json"] 
       }
     }
   }
