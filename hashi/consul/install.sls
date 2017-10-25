@@ -2,8 +2,8 @@
 
 /var/cache/salt/consul.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/consul/0.9.3/consul_0.9.3_linux_amd64.zip
-    - source_hash: https://releases.hashicorp.com/consul/0.9.3/consul_0.9.3_SHA256SUMS
+    - source: https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip
+    - source_hash: https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_SHA256SUMS
   service.dead:
     - names:
       - consul
