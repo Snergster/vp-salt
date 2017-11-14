@@ -1,3 +1,5 @@
+{% set crypt = salt['pillar.get']('restrictedusers:consul:crypt', salt['grains.get']('consul_crypt', '$6rUu5wzdNP0Y')) %}
+
 consul group:
   group.present:
     - name: consul
