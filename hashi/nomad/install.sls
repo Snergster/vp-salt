@@ -26,8 +26,9 @@ liblxc1:
     - onchanges:
       - module: /var/cache/salt/nomad.zip
 
-nomad:
+nomad run:
   service.running:
+    - name: nomad
     - order: last
     - enable: True
     - restart: True
