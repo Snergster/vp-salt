@@ -5,8 +5,8 @@ liblxc1:
 
 /var/cache/salt/nomad.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/nomad/0.7.1/nomad_0.7.1_linux_amd64.zip
-    - source_hash: https://releases.hashicorp.com/nomad/0.7.1/nomad_0.7.1_SHA256SUMS
+    - source: https://releases.hashicorp.com/nomad/0.8.3/nomad_0.8.3_linux_amd64.zip
+    - source_hash: https://releases.hashicorp.com/nomad/0.8.3/nomad_0.8.3_SHA256SUMS
   service.dead:
     - names:
       - nomad

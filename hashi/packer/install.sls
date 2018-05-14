@@ -6,8 +6,8 @@
 
 /var/cache/salt/packer.zip:
   file.managed:
-    - source: https://releases.hashicorp.com/packer/1.0.4/packer_1.0.4_linux_amd64.zip
-    - source_hash: https://releases.hashicorp.com/packer/1.0.4/packer_1.0.4_SHA256SUMS?_ga=2.81175447.1062380219.1502998978-159452932.1489086946
+    - source: https://releases.hashicorp.com/packer/1.2.3/packer_1.2.3_linux_amd64.zip
+    - source_hash: https://releases.hashicorp.com/packer/1.2.3/packer_1.2.3_SHA256SUMS
   module.run:
     - name: archive.unzip
     - zip_file: /var/cache/salt/packer.zip
