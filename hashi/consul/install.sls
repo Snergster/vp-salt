@@ -2,7 +2,11 @@
 
 /var/cache/salt/consul.zip:
   file.managed:
+    {% if grains['osarch'] == 'amd64' %}
     - source: https://releases.hashicorp.com/consul/1.1.0/consul_1.1.0_linux_amd64.zip
+    {% elif grains['osarch'] == 'arm64' %}
+    - source: https://releases.hashicorp.com/consul/1.1.0/consul_1.1.0_linux_arm64.zip
+    {% endif %}
     - source_hash: https://releases.hashicorp.com/consul/1.1.0/consul_1.1.0_SHA256SUMS
   service.dead:
     - names:
@@ -14,7 +18,11 @@
 
 /var/cache/salt/consul-template.zip:
   file.managed:
+    {% if grains['osarch'] == 'amd64' %}
     - source: https://releases.hashicorp.com/consul-template/0.19.4/consul-template_0.19.4_linux_amd64.zip
+    {% elif grains['osarch'] == 'arm64' %}
+    - source: https://releases.hashicorp.com/consul-template/0.19.4/consul-template_0.19.4_linux_arm64.zip
+    {% endif %}
     - source_hash: https://releases.hashicorp.com/consul-template/0.19.4/consul-template_0.19.4_SHA256SUMS
   module.run:
     - name: archive.unzip

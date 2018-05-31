@@ -5,7 +5,11 @@ liblxc1:
 
 /var/cache/salt/nomad.zip:
   file.managed:
+    {% if grains['osarch'] == 'amd64' %}
     - source: https://releases.hashicorp.com/nomad/0.8.3/nomad_0.8.3_linux_amd64.zip
+    {% elif grains['osarch'] == 'arm64' %}
+    - source: https://releases.hashicorp.com/nomad/0.8.3/nomad_0.8.3_linux_arm64.zip
+    {% endif %}
     - source_hash: https://releases.hashicorp.com/nomad/0.8.3/nomad_0.8.3_SHA256SUMS
   service.dead:
     - names:
